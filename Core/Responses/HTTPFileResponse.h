@@ -19,6 +19,9 @@
 	NSUInteger bufferSize;
 }
 
+@property (nonatomic,strong) NSString *mimeType;
+@property (nonatomic,strong) NSString *attachmentName;
+
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
 - (NSString *)filePath;
 

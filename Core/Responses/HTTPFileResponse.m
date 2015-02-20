@@ -218,6 +218,26 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 	return filePath;
 }
 
+- (NSDictionary*)httpHeaders
+{
+	if( self.mimeType || self.attachmentName )
+	{
+		NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+		if( self.mimeType )
+			dict[@"Content-Type"] = self.mimeType;
+
+		if( self.attachmentName )
+			dict[@"Content-Disposition"] = [NSString stringWithFormat:@"Content-Disposition: attachment; filename=\"%@\"", self.attachmentName];
+
+		return [dict copy];
+	}
+	else
+	{
+		return nil;
+	}
+
+}
+
 - (void)dealloc
 {
 	HTTPLogTrace();
